@@ -1,0 +1,31 @@
+﻿<h1>Productos</h1>
+<a routerLink="add" class="btn btn-sm btn-success mb-2">Agregar productos</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th style="width: 30%">Nombre</th>
+            <th style="width: 30%">Descripción</th>
+            <th style="width: 10%">Precio</th>
+            <th style="width: 10%"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of products">
+            <td>{{product.name}}</td>
+            <td>{{product.description}}</td>
+            <td>{{product.price | currency }}</td>
+            <td style="white-space: nowrap">
+                <a routerLink="edit/{{product.id}}" class="btn btn-sm btn-primary mr-1">Editar</a>
+                <button (click)="deleteProduct(product.id)" class="btn btn-sm btn-danger btn-delete-user" [disabled]="product.isDeleting">
+                    <span *ngIf="product.isDeleting" class="spinner-border spinner-border-sm"></span>
+                    <span *ngIf="!product.isDeleting">Delete</span>
+                </button>
+            </td>
+        </tr>
+        <tr *ngIf="!products">
+            <td colspan="4" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>

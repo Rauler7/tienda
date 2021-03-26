@@ -1,0 +1,73 @@
+﻿<h1 *ngIf="isAddMode">Agregar cliente</h1>
+<h1 *ngIf="!isAddMode">Editar cliente</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+        <!-- <div class="form-group col">
+            <label>Title</label>
+            <select formControlName="title" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
+                <option value=""></option>
+                <option value="Mr">Mr</option>
+                <option value="Mrs">Mrs</option>
+                <option value="Miss">Miss</option>
+                <option value="Ms">Ms</option>
+            </select>
+            <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                <div *ngIf="f.title.errors.required">Title is required</div>
+            </div>
+        </div> -->
+        <div class="form-group col-5">
+            <label>Id</label>
+            <input type="text" formControlName="id" class="form-control" [ngClass]="{ 'is-invalid': (submitted && f.id.errors) || f.id.errors && (f.id.touched || f.id.dirty) }" />
+            <div *ngIf="(submitted && f.id.errors) || f.id.errors && (f.id.touched || f.id.dirty)" class="invalid-feedback">
+                <div *ngIf="f.id.errors.required">El id es requerido</div>
+            </div>
+        </div>
+        <div class="form-group col-5">
+            <label>Nombre</label>
+            <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': (submitted && f.name.errors) || f.name.errors && (f.name.touched || f.name.dirty) }" />
+            <div *ngIf="(submitted && f.name.errors) || f.name.errors && (f.name.touched || f.name.dirty)" class="invalid-feedback">
+                <div *ngIf="f.name.errors.required">El Nombre es requerido</div>
+            </div>
+        </div>
+        <div class="form-group col-5">
+            <label>Apellido</label>
+            <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': (submitted && f.lastName.errors) || f.lastName.errors && (f.lastName.touched || f.lastName.dirty) }" />
+            <div *ngIf="(submitted && f.lastName.errors) || f.lastName.errors && (f.lastName.touched || f.lastName.dirty)" class="invalid-feedback">
+                <div *ngIf="f.lastName.errors.required">El apellido es requerido</div>
+            </div>
+        </div>
+        <div class="form-group col-5">
+          <label>Teléfono</label>
+          <input type="text" formControlName="phone" class="form-control" [ngClass]="{ 'is-invalid': (submitted && f.phone.errors) || f.phone.errors && (f.phone.touched || f.phone.dirty) }" />
+          <div *ngIf="(submitted && f.phone.errors) || f.phone.errors && (f.phone.touched || f.phone.dirty)" class="invalid-feedback">
+              <div *ngIf="f.phone.errors.required">El número de teléfono es requerido</div>
+              <div *ngIf="f.phone.errors.minlength">Número de teléfono inválido, debe contener más de 7 digitos</div>
+              <div *ngIf="f.phone.errors.maxlength">Número de teléfono inválido, debe contener menos de 9 digitos</div>
+          </div>
+        </div>
+        <div class="form-group col-5">
+          <label>Email</label>
+          <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': (submitted && f.email.errors) || f.email.errors && (f.email.touched || f.email.dirty) }" />
+          <div *ngIf="(submitted && f.email.errors) || f.email.errors && (f.email.touched || f.email.dirty)" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">El correo es requerido</div>
+              <div *ngIf="f.email.errors.pattern">El correo ingresado no es válido</div>
+          </div>
+        </div>
+        <div class="form-group col-5">
+          <label>NIT</label>
+          <input type="text" formControlName="nit" class="form-control" [ngClass]="{ 'is-invalid': (submitted && f.nit.errors) || f.nit.errors && (f.nit.touched || f.nit.dirty) }" />
+          <div *ngIf="(submitted && f.nit.errors) || f.nit.errors && (f.nit.touched || f.nit.dirty)" class="invalid-feedback">
+              <div *ngIf="f.nit.errors.required">Last Name is required</div>
+              <div *ngIf="f.nit.errors.minlength">El NIT debe contener más de 13 digitos</div>
+              <div *ngIf="f.nit.errors.maxlength">NIT inválido, debe contener menos de 15 digitos</div>
+          </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Guardar
+        </button>
+        <a routerLink="/users" class="btn btn-link">Cancelar</a>
+    </div>
+</form>

@@ -1,0 +1,57 @@
+{
+  "clientes": [
+    {
+      "id": "4",
+      "name": "Ana",
+      "lastName": "Gracia",
+      "phone": "75757575",
+      "email": "ana@mail.com",
+      "nit": "12312345231265"
+    },
+    {
+      "id": "5",
+      "name": "Fran",
+      "lastName": "Merino",
+      "phone": "77887788",
+      "email": "fran@gmail.com",
+      "nit": "02222222222222"
+    }
+  ],
+  "ordenes": [
+    {
+      "id": "1",
+      "productId": "2",
+      "clientId": "4",
+      "quantity": "30",
+      "date": "2021-10-19T06:00:00.000Z"
+    },
+    {
+      "id": "2",
+      "productId": "3",
+      "clientId": "5",
+      "quantity": "100",
+      "date": "2021-04-09T06:00:00.000Z"
+    },
+    {
+      "id": "3",
+      "productId": "2",
+      "clientId": "4",
+      "quantity": "305",
+      "date": "2021-10-30T06:00:00.000Z"
+    }
+  ],
+  "productos": [
+    {
+      "id": "2",
+      "name": "iPhone",
+      "description": "Model X",
+      "price": "1000"
+    },
+    {
+      "id": "3",
+      "name": "Laptop",
+      "description": "Modelo 2021",
+      "price": "2000"
+    }
+  ]
+}

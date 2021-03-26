@@ -1,0 +1,116 @@
+﻿<h1 *ngIf="isAddMode">Agregar Orden</h1>
+<h1 *ngIf="!isAddMode">Editar Orden</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+        <!-- <div class="form-group col">
+            <label>Title</label>
+            <select formControlName="title" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
+                <option value=""></option>
+                <option value="Mr">Mr</option>
+                <option value="Mrs">Mrs</option>
+                <option value="Miss">Miss</option>
+                <option value="Ms">Ms</option>
+            </select>
+            <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                <div *ngIf="f.title.errors.required">Title is required</div>
+            </div>
+        </div> -->
+        <div class="form-group col-5">
+            <label>Id</label>
+            <input type="text" formControlName="id" class="form-control" [ngClass]="{ 'is-invalid': (submitted && f.id.errors) || f.id.errors && (f.id.touched || f.id.dirty) }" />
+            <div *ngIf="(submitted && f.id.errors) || f.id.errors && (f.id.touched || f.id.dirty)" class="invalid-feedback">
+                <div *ngIf="f.id.errors.required">El Id es requerido</div>
+            </div>
+        </div>
+        <div class="form-group col-5">
+            <label>Nombre del producto</label>
+            <select formControlName="productId" class="form-control" [ngClass]="{ 'is-invalid': (submitted && f.productId.errors) || f.productId.errors && (f.productId.touched || f.productId.dirty) }">
+              <option [ngValue]="product.id" *ngFor="let product of products">
+                {{product.name}}
+              </option>
+            </select>
+            <div *ngIf="(submitted && f.productId.errors) || f.productId.errors && (f.productId.touched || f.productId.dirty)" class="invalid-feedback">
+                <div *ngIf="f.productId.errors.required">El nombre del producto es requerido</div>
+            </div>
+        </div>
+        <div class="form-group col-5">
+          <label>Cliente</label>
+          <select formControlName="clientId" class="form-control" [ngClass]="{ 'is-invalid': (submitted && f.clientId.errors) || f.clientId.errors && (f.clientId.touched || f.clientId.dirty) }">
+            <option [ngValue]="client.id" *ngFor="let client of clients">
+              {{client.name}}
+            </option>
+          </select>
+          <div *ngIf="(submitted && f.clientId.errors) || f.clientId.errors && (f.clientId.touched || f.clientId.dirty)" class="invalid-feedback">
+              <div *ngIf="f.clientId.errors.required">El nombre del cliente es requerido</div>
+          </div>
+      </div>
+        <div class="form-group col-5 date-fix">
+          <mat-label>Fecha de entrega</mat-label>
+          <input matInput [matDatepicker]="endDate" formControlName="date" class="form-control" [ngClass]="{ 'is-invalid': (submitted && f.date.errors) || f.date.errors && (f.date.touched || f.date.dirty) }">
+          <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+          <mat-datepicker #endDate startView="year" [startAt]="startDate"></mat-datepicker>
+          <mat-hint>DD/MM/YYYY</mat-hint>
+          <div *ngIf="(submitted && f.date.errors) || f.date.errors && (f.date.touched || f.date.dirty)" class="invalid-feedback">
+              <div *ngIf="f.date.errors.required">La fecha es requerida</div>
+          </div>
+        </div>
+        <div class="form-group col-5">
+          <label>Cantidad</label>
+          <input type="text" formControlName="quantity" class="form-control" [ngClass]="{ 'is-invalid': (submitted && f.quantity.errors) || f.quantity.errors && (f.quantity.touched || f.quantity.dirty) }" />
+          <div *ngIf="(submitted && f.quantity.errors) || f.quantity.errors && (f.quantity.touched || f.quantity.dirty)" class="invalid-feedback">
+              <div *ngIf="f.quantity.errors.required">La cantidad es requerida</div>
+              <div *ngIf="f.quantity.errors.pattern">La cantidad debe ser un número</div>
+          </div>
+      </div>
+    </div>
+    <!-- <div class="form-row">
+        <div class="form-group col-7">
+            <label>Email</label>
+            <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">Email is required</div>
+                <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label>Role</label>
+            <select formControlName="role" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.role.errors }">
+                <option value=""></option>
+                <option value="User">User</option>
+                <option value="Admin">Admin</option>
+            </select>
+            <div *ngIf="submitted && f.role.errors" class="invalid-feedback">
+                <div *ngIf="f.role.errors.required">Role is required</div>
+            </div>
+        </div>
+    </div> -->
+    <!-- <div *ngIf="!isAddMode">
+        <h3 class="pt-3">Change Password</h3>
+        <p>Leave blank to keep the same password</p>
+    </div>
+    <div class="form-row">
+        <div class="form-group col">
+            <label>Password</label>
+            <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Password is required</div>
+                <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label>Confirm Password</label>
+            <input type="password" formControlName="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+            <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+                <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+            </div>
+        </div>
+    </div> -->
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Guardar
+        </button>
+        <a routerLink="/orders" class="btn btn-link">Cancelar orden</a>
+    </div>
+</form>

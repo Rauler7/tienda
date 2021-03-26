@@ -1,0 +1,36 @@
+﻿<h1>Ordenes</h1>
+<a routerLink="add" class="btn btn-sm btn-success mb-2">Agregar orden</a>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th style="width: 20%">Id de la Orden</th>
+      <th style="width: 20%">Id del Producto</th>
+      <th style="width: 20%">Id del Cliente</th>
+      <th style="width: 10%">Cantidad</th>
+      <th style="width: 30%">Fecha</th>
+      <th style="width: 10%"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of orders; let i = index;">
+      <td>{{order.id}}</td>
+      <td>{{order.productId}}</td>
+      <td>{{order.clientId}}</td>
+      <td>{{order.quantity}}</td>
+      <td>{{order.date | date:'d/M/yy'}}</td>
+      <td style="white-space: nowrap">
+        <a routerLink="edit/{{order.id}}" class="btn btn-sm btn-primary mr-1">Editar</a>
+        <button (click)="deleteOrder(order.id)" class="btn btn-sm btn-danger btn-delete-user"
+          [disabled]="order.isDeleting">
+          <span *ngIf="order.isDeleting" class="spinner-border spinner-border-sm"></span>
+          <span *ngIf="!order.isDeleting">Delete</span>
+        </button>
+      </td>
+    </tr>
+    <tr *ngIf="!orders">
+      <td colspan="4" class="text-center">
+        <span class="spinner-border spinner-border-lg align-center"></span>
+      </td>
+    </tr>
+  </tbody>
+</table>
